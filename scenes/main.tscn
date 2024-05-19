@@ -1,20 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmx72fxtk74uo"]
+[gd_scene load_steps=5 format=3 uid="uid://dmx72fxtk74uo"]
 
 [ext_resource type="PackedScene" uid="uid://bfna6c1mmoq2b" path="res://scenes/level-1/level_1.tscn" id="2_o04hg"]
+[ext_resource type="PackedScene" uid="uid://cibx6t3eysq24" path="res://scenes/killzone.tscn" id="3_o7pxc"]
 [ext_resource type="PackedScene" uid="uid://cj2g7gh54x837" path="res://scenes/player/player.tscn" id="5_gkjss"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_c7g0g"]
 
 [node name="Main" type="Node"]
 
 [node name="Player" parent="." instance=ExtResource("5_gkjss")]
-position = Vector2(265, 918)
+position = Vector2(386, 873)
 scale = Vector2(1.5, 1.5)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.205, 0.205)
 process_callback = 0
 limit_left = -400
+limit_top = -4000
+limit_right = 12200
 limit_bottom = 2300
 limit_smoothed = true
 position_smoothing_enabled = true
 
 [node name="Level1" parent="." instance=ExtResource("2_o04hg")]
+
+[node name="Killzone" parent="." instance=ExtResource("3_o7pxc")]
+position = Vector2(152, 2605)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+shape = SubResource("WorldBoundaryShape2D_c7g0g")
