@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyivekjfm0muj"]
+
+[ext_resource type="Script" path="res://scripts/level_change.gd" id="1_nt84q"]
+
+[node name="NextLevel" type="Area2D"]
+script = ExtResource("1_nt84q")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
