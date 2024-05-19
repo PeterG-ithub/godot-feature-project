@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cynsrljkdhdeo"]
+
+[ext_resource type="Script" path="res://scenes/level-1/sign.gd" id="1_2bn3u"]
+[ext_resource type="Texture2D" uid="uid://2f3f0tsc43du" path="res://assets/Mossy Tileset/mossy-sign.png" id="1_m3oim"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ip3w"]
+size = Vector2(79.3905, 112.922)
+
+[node name="Sign" type="Area2D"]
+position = Vector2(-0.185028, -249.56)
+scale = Vector2(4.41816, 4.41816)
+collision_layer = 0
+script = ExtResource("1_2bn3u")
+
+[node name="SignSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_m3oim")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3ip3w")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -71.3723
+offset_top = -116.257
+offset_right = 71.6277
+offset_bottom = -67.2569
+text = "Proximity Sign:
+is a sign a feature?"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

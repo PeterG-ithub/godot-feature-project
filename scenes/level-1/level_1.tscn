@@ -1,4 +1,4 @@
-[gd_scene load_steps=803 format=3 uid="uid://bfna6c1mmoq2b"]
+[gd_scene load_steps=806 format=3 uid="uid://bfna6c1mmoq2b"]
 
 [ext_resource type="Texture2D" uid="uid://vcf1j8p7ests" path="res://assets/Mossy Tileset/Mossy - TileSet.png" id="1_olw5r"]
 [ext_resource type="Script" path="res://scenes/level-1/level_1.gd" id="1_sgmr1"]
@@ -736,6 +736,8 @@
 [ext_resource type="Texture2D" uid="uid://uiaqqkmtrw76" path="res://assets/Plant Animations/PlantJump2/JumpPlant 2_00017.png" id="734_j7amy"]
 [ext_resource type="Texture2D" uid="uid://dvqpc185dxi6q" path="res://assets/Plant Animations/PlantJump2/JumpPlant 2_00018.png" id="735_ds1lq"]
 [ext_resource type="Texture2D" uid="uid://d36ummagtlxdg" path="res://assets/Plant Animations/PlantJump2/JumpPlant 2_00019.png" id="736_xrks0"]
+[ext_resource type="PackedScene" uid="uid://cynsrljkdhdeo" path="res://scenes/level-1/sign.tscn" id="737_8ic0y"]
+[ext_resource type="PackedScene" uid="uid://cyivekjfm0muj" path="res://scenes/next_level.tscn" id="738_tuesa"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hgbcx"]
 load_path = "res://.godot/imported/Mossy - BackgroundDecoration.png-3f3ea61cf643dcbc5791a38aae189447.ctex"
@@ -3493,9 +3495,13 @@ texture_region_size = Vector2i(512, 512)
 
 [sub_resource type="TileSet" id="TileSet_wcnxh"]
 tile_size = Vector2i(512, 512)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_js754")
 sources/5 = SubResource("TileSetAtlasSource_jqqvr")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_majq4"]
+size = Vector2(44.5863, 89.0981)
 
 [node name="Level1" type="Node"]
 script = ExtResource("1_sgmr1")
@@ -3934,3 +3940,26 @@ texture = SubResource("AtlasTexture_ffof5")
 position = Vector2(1477.01, -109.127)
 scale = Vector2(1.69556, 1.69556)
 texture = SubResource("AtlasTexture_vpgk5")
+
+[node name="Interactable" type="Node2D" parent="."]
+z_index = -2
+
+[node name="Sign" parent="Interactable" instance=ExtResource("737_8ic0y")]
+position = Vector2(3831.9, 882.389)
+sign_type = "Proximity"
+
+[node name="Sign2" parent="Interactable" instance=ExtResource("737_8ic0y")]
+position = Vector2(5898.24, 866.371)
+sign_type = "Interact"
+
+[node name="NextLevel" parent="Interactable" instance=ExtResource("738_tuesa")]
+position = Vector2(10804, -355.634)
+collision_layer = 0
+
+[node name="SmallRock2" type="Sprite2D" parent="Interactable/NextLevel"]
+texture = SubResource("AtlasTexture_mt4ck")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/NextLevel"]
+position = Vector2(-49.3887, -7.56396)
+scale = Vector2(18.84, 10.28)
+shape = SubResource("RectangleShape2D_majq4")
